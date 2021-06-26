@@ -8,6 +8,7 @@ public class TrainingDTO {
 	
 	private List<ExerciseDTO> exercises = new ArrayList<>();
 	private Integer restBetweenExercises;
+	private Integer duration;
 	private Date plannedDate;
 	
 	public List<ExerciseDTO> getExercises() {
@@ -27,6 +28,12 @@ public class TrainingDTO {
 	}
 	public void setPlannedDate(Date plannedDate) {
 		this.plannedDate = plannedDate;
+	}
+	public Integer getDuration() {
+		return duration;
+	}
+	public void setDuration(Integer duration) {
+		this.duration = duration;
 	}
 	
 }

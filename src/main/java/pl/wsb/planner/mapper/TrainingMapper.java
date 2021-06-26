@@ -3,11 +3,12 @@ package pl.wsb.planner.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import pl.wsb.planner.dto.TrainingDTO;
 import pl.wsb.planner.model.Training;
 
-@Mapper
+@Mapper(uses = ExerciseMapper.class)
 public interface TrainingMapper {
 
 	TrainingDTO trainingToTrainingDTO(Training entity);
@@ -15,5 +16,7 @@ public interface TrainingMapper {
 	Training trainingDTOToTraining(TrainingDTO dto);
 
 	List<TrainingDTO> map(Iterable<Training> trainings);
+	
+    void updateTrainingFromDto(TrainingDTO dto, @MappingTarget Training entity);
 
 }

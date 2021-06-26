@@ -1,9 +1,11 @@
 package pl.wsb.planner.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,31 +15,26 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @MappedSuperclass
-public class HibernateModel {
+@EntityListeners(AuditingEntityListener.class)
+public class HibernateModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
-	
-	@Temporal(TemporalType.TIMESTAMP)
+
+	@CreatedDate
     @Column(name = "created", length = 19)
 	private Date created;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated", nullable = false, length = 19)
+
+	@LastModifiedDate
+    @Column(name = "updated", length = 19)
 	private Date updated;
-
-	@PrePersist
-	protected void onCreate() {
-		created = new Date();
-	}
-
-	@PreUpdate
-	protected void onUpdate() {
-		updated = new Date();
-	}
 
 	public Long getId() {
 		return id;

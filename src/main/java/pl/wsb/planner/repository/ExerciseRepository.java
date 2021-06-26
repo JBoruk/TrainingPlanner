@@ -6,4 +6,6 @@ import pl.wsb.planner.model.Exercise;
 
 public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
 
+	Exercise findFirstByName(String name);
+	
 }

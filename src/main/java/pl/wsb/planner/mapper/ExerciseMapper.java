@@ -3,6 +3,7 @@ package pl.wsb.planner.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
 import pl.wsb.planner.dto.ExerciseDTO;
 import pl.wsb.planner.model.Exercise;
